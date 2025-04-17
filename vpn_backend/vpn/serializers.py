@@ -21,7 +21,7 @@ class VPNServerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = VPNServer
-        fields = ['id', 'server_name', 'server_ip', 'server_location', 'server_location_name', 'is_active']
+        fields = ['id', 'server_name', 'server_ip', 'server_location', 'server_location_name', 'is_active', 'api_key']
         extra_kwargs = {
             'api_key': {'write_only': True}
         }
