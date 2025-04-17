@@ -13,8 +13,8 @@ services:
   web:
     build: .
     restart: always
-    depends_on:
-      - db
+#    depends_on:
+#      - db
     volumes:
       - static_volume:/app/static
     command: >
