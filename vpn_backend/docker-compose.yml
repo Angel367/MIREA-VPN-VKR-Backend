@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "python manage.py migrate &&
+             gunicorn vpn_backend.wsgi:application --bind 0.0.0.0:8000"
