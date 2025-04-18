@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 
+
 class Country(models.Model):
     id = models.AutoField(primary_key=True)
     country_name = models.CharField(max_length=100, unique=True)
@@ -63,9 +64,14 @@ class VPNKey(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     expiration_date = models.DateTimeField(null=True, blank=True)
     traffic_limit = models.BigIntegerField(default=0)  # в байтах
-    traffic_used = models.BigIntegerField(default=0)  # в байтах
     traffic_last_period_bytes = models.BigIntegerField(default=0)
     is_active = models.BooleanField(default=True)
+
+    @property
+    def traffic_used(self):
+        from .utils.outline import OutlineVPNClient
+        client = OutlineVPNClient(api_url=self.vpn_server.api_url, cert_sha256=self.vpn_server.cert_sha)
+        return client.get_key(key_id=self.outline_id).used_bytes
 
     def __str__(self):
         return f"{self.name} - {self.user}"
