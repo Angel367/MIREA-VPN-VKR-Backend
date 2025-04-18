@@ -1,1 +1,0 @@
-# MIREA-VPN-VKR-Backend
