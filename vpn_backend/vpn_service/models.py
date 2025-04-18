@@ -71,7 +71,10 @@ class VPNKey(models.Model):
     def traffic_used(self):
         from .utils.outline import OutlineVPNClient
         client = OutlineVPNClient(api_url=self.vpn_server.api_url, cert_sha256=self.vpn_server.cert_sha)
-        return client.get_key(key_id=self.outline_id).used_bytes
+        if client.get_key(key_id=self.outline_id).used_bytes is not None:
+            return client.get_key(key_id=self.outline_id).used_bytes
+        else:
+            return 0
 
     def __str__(self):
         return f"{self.name} - {self.user}"
