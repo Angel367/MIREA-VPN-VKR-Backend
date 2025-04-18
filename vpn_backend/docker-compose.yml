@@ -11,16 +11,28 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=postgres
       - POSTGRES_DB=vpn_db
+
   web:
     build: .
     restart: always
     depends_on:
       - db
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     command: >
-      sh -c " python manage.py makemigrations &&
-              python manage.py migrate &&
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "8000:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - web
+
 volumes:
   postgres_data:

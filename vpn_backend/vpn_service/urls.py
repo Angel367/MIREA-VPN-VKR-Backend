@@ -11,7 +11,7 @@ router.register(r'cities', CityViewSet)
 router.register(r'servers', VPNServerViewSet)
 router.register(r'users', UserViewSet)
 router.register(r'keys', VPNKeyViewSet)
-router.register(r'telegram-bots', TelegramBotViewSet)
+# router.register(r'telegram-bots', TelegramBotViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
