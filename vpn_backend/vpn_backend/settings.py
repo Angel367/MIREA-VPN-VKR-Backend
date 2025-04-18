@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'vpn_db',
         'USER': 'postgres',
         'PASSWORD': 'password',
-        'HOST': 'db',
+        'HOST': '194.87.252.26',
         'PORT': '5432',
     }
 }
