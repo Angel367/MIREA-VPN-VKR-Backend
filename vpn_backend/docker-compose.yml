@@ -28,11 +28,24 @@ services:
     image: nginx:latest
     ports:
       - "80:80"
-      - "8000:80"
+      - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     depends_on:
       - web
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c"
+    command: >
+      "certbot certonly --webroot --webroot-path=/var/www/certbot
+       --email your_email@example.com --agree-tos --no-eff-email
+       -d volkov-egor.tech"
 
 volumes:
   postgres_data:
