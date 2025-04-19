@@ -36,16 +36,16 @@ services:
     depends_on:
       - web
 
-#  certbot:
-#    image: certbot/certbot
-#    volumes:
-#      - ./certbot/conf:/etc/letsencrypt
-#      - ./certbot/www:/var/www/certbot
-#    entrypoint: "/bin/sh -c"
-#    command: >
-#      "certbot certonly --webroot --webroot-path=/var/www/certbot
-#       --email your_email@example.com --agree-tos --no-eff-email
-#       -d volkov-egor.tech"
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c"
+    command: >
+      "certbot certonly --webroot --webroot-path=/var/www/certbot
+       --email your_email@example.com --agree-tos --no-eff-email
+       -d volkov-egor.tech"
 
 volumes:
   postgres_data:
