@@ -44,7 +44,7 @@ services:
     entrypoint: "/bin/sh -c"
     command: >
       "certbot certonly --webroot --webroot-path=/var/www/certbot
-       --email your_email@example.com --agree-tos --no-eff-email
+       --email egor.volkov20038@gmail.com --agree-tos --no-eff-email
        -d volkov-egor.tech"
 
 volumes:
