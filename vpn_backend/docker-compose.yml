@@ -6,12 +6,11 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     restart: always
     ports:
-      - "12789:5432"
+      - ":5432"
     environment:
       - POSTGRES_PASSWORD=
       - POSTGRES_USER=
       - POSTGRES_DB=
-
   web:
     build: .
     restart: always
