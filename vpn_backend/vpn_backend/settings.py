@@ -93,11 +93,11 @@ WSGI_APPLICATION = 'vpn_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'vpn_db',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': '194.87.252.26',
-        'PORT': '5432',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
